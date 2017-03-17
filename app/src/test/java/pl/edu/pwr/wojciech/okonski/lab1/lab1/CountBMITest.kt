@@ -9,7 +9,7 @@ class CountBMITest {
     fun massUnderZeroIsInvalid() {
         // GIVEN
         val testMass = -1.0f
-        val countBMITest = CountBMIforKgM()
+        val countBMITest = CountBmiForKgM()
 
         // WHEN
         val actual = countBMITest.isMassValid(testMass)
@@ -23,7 +23,7 @@ class CountBMITest {
         // GIVEN
         val testMass = 67f
         val testHeight = 1.85f
-        val countBMITest = CountBMIforKgM()
+        val countBMITest = CountBmiForKgM()
 
         // WHEN
         val actual = countBMITest.calculateBMI(testMass, testHeight)
