@@ -22,7 +22,6 @@ class CountBmiForKgMTest extends Specification {
         10.1f  || true
         249.9f || true
         250f   || false
-
     }
 
     @Unroll

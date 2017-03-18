@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Lab1</string>
+    <string name="mass">MASS</string>
+    <string name="height">HEIGHT</string>
+    <string name="bmi">BMI:</string>
+    <string name="countBmi">Count BMI</string>
 </resources>
