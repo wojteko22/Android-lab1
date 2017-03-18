@@ -64,9 +64,9 @@ class CountBmiForKgMTest extends Specification {
         actual closeTo(expectedResult, acceptableError)
 
         where:
-        mass = 67f
+        mass = 67.5f
         height = 1.85f
-        expectedResult = 19.5f
+        expectedResult = 19.7f
         acceptableError = 0.1f
     }
 }
