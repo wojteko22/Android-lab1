@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,60 +10,96 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pl.edu.pwr.wojciech.okonski.lab1.lab1.MainActivity">
 
-    <TextView
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvMass"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/spinner"
         android:text="@string/mass"
-        android:textSize="18sp" />
+        android:textSize="@dimen/default_font_size" />
 
     <EditText
         android:id="@+id/etMass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tvMass"
+        android:layout_marginLeft="@dimen/default_left_margin"
+        android:layout_marginStart="@dimen/default_left_margin"
+        android:layout_toEndOf="@+id/tvMass"
+        android:layout_toRightOf="@id/tvMass"
+        android:gravity="center"
         android:inputType="numberDecimal"
-        android:textSize="25sp"
+        android:textSize="@dimen/default_font_size"
         tools:text="67.5" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/tvHeight"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMass"
         android:layout_marginTop="30dp"
         android:text="@string/height"
-        android:textSize="18sp" />
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/etHeight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tvHeight"
+        android:layout_alignLeft="@id/etMass"
+        android:layout_alignStart="@id/etMass"
+        android:layout_below="@id/etMass"
+        android:layout_toEndOf="@+id/tvHeight"
+        android:layout_toRightOf="@id/tvHeight"
+        android:gravity="center"
         android:inputType="numberDecimal"
-        android:textSize="25sp"
+        android:textSize="@dimen/default_font_size"
         tools:text="1.85" />
 
     <Button
         android:id="@+id/btnCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvHeight"
         android:layout_marginTop="30dp"
-        android:layout_weight="1"
         android:text="@string/countBmi"
-        android:textSize="20sp" />
+        android:textSize="@dimen/default_font_size" />
 
     <TextView
+        android:id="@+id/tvBMI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_below="@id/btnCount"
+        android:layout_marginTop="@dimen/default_top_margin"
         android:gravity="center"
         android:text="@string/bmi"
-        android:textSize="25sp" />
+        android:textSize="@dimen/default_font_size" />
 
     <TextView
         android:id="@+id/tvBmiResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_below="@+id/tvBMI"
+        android:layout_marginTop="@dimen/default_top_margin"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="@dimen/default_font_size"
         android:textStyle="bold"
         tools:text="20.0" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvBmiDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBmiResult"
+        android:layout_marginTop="@dimen/default_top_margin"
+        android:gravity="center"
+        android:textSize="@dimen/default_font_size"
+        android:textStyle="bold"
+        tools:text="Twoje BMI jest za niskie" />
+
+</RelativeLayout>
