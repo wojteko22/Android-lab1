@@ -4,6 +4,8 @@
     <string name="height">HEIGHT</string>
     <string name="bmi">BMI:</string>
     <string name="countBmi">Count BMI</string>
+    <string name="wrongInput">Invalid input!</string>
+    <string name="wrongMass">Invalid mass!</string>
     <string-array name="units">
         <item>kg/m</item>
         <item>lb/in</item>
