@@ -13,13 +13,15 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/support_simple_spinner_dropdown_item" />
 
     <TextView
         android:id="@+id/tvMass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner"
+        android:layout_marginTop="@dimen/default_top_margin"
         android:text="@string/mass"
         android:textSize="@dimen/default_font_size" />
 
@@ -42,9 +44,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvMass"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/default_top_margin"
         android:text="@string/height"
-        android:textSize="25sp" />
+        android:textSize="@dimen/default_font_size" />
 
     <EditText
         android:id="@+id/etHeight"
@@ -66,7 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvHeight"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/default_top_margin"
         android:text="@string/countBmi"
         android:textSize="@dimen/default_font_size" />
 
