@@ -3,6 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="default_font_size">25sp</dimen>
-    <dimen name="default_left_margin">100dp</dimen>
+    <dimen name="default_left_margin">140dp</dimen>
     <dimen name="default_top_margin">35dp</dimen>
 </resources>

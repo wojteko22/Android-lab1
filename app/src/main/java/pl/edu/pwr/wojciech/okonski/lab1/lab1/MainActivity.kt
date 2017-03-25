@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun tryToCalculateBMI(massString: String, heightString: String) {
         if (massString == "" || heightString == "")
-            setInvalidInputPrompt()
+            handleInvalidInput()
         else
             tryToCalculateBMI(massString.toFloat(), heightString.toFloat())
     }
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             tvBmiResult.text = bmi
             setFireWorks(bmi.toFloat())
         } catch(e: IllegalArgumentException) {
-            setInvalidInputPrompt()
+            handleInvalidInput()
         }
     }
 
@@ -89,7 +89,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setInvalidInputPrompt() {
+    private fun handleInvalidInput() {
+        tvBmiResult.text = ""
         setDescription(R.string.invalidInput)
     }
 

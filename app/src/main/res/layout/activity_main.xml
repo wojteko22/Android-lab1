@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -36,6 +35,7 @@
         android:layout_toRightOf="@id/tvMass"
         android:gravity="center"
         android:inputType="numberDecimal"
+        android:maxLength="7"
         android:textSize="@dimen/default_font_size"
         tools:text="67.5" />
 
@@ -55,11 +55,11 @@
         android:layout_alignBaseline="@id/tvHeight"
         android:layout_alignLeft="@id/etMass"
         android:layout_alignStart="@id/etMass"
-        android:layout_below="@id/etMass"
         android:layout_toEndOf="@+id/tvHeight"
         android:layout_toRightOf="@id/tvHeight"
         android:gravity="center"
         android:inputType="numberDecimal"
+        android:maxLength="7"
         android:textSize="@dimen/default_font_size"
         tools:text="1.85" />
 
@@ -101,6 +101,6 @@
         android:layout_marginTop="@dimen/default_top_margin"
         android:gravity="center"
         android:textSize="@dimen/default_font_size"
-        tools:text="Twoje BMI jest za niskie" />
+        tools:text="Normal BMI" />
 
 </RelativeLayout>
