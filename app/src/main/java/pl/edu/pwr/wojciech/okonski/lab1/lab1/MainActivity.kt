@@ -48,9 +48,7 @@ class MainActivity : AppCompatActivity() {
     private fun tryToCalculateBMI(mass: Float, height: Float) {
         setBmiCounter()
         try {
-            val bmi = bmiCounter.calculateBMI(mass, height).toString()
-            tvBmiResult.text = bmi
-            setFireWorks(bmi.toFloat())
+            calculateBmi(mass, height)
         } catch(e: IllegalArgumentException) {
             handleInvalidInput()
         }
@@ -62,6 +60,12 @@ class MainActivity : AppCompatActivity() {
                     KgMBmiCounter()
                 else
                     LbInBmiCounter()
+    }
+
+    private fun calculateBmi(mass: Float, height: Float) {
+        val bmi = bmiCounter.calculateBMI(mass, height).toString()
+        tvBmiResult.text = bmi
+        setFireWorks(bmi.toFloat())
     }
 
     private fun setFireWorks(bmi: Float) {
