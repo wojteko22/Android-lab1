@@ -51,7 +51,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setFireWorks(bmi: Float) {}
+    private fun setFireWorks(bmi: Float) {
+        when (bmi) {
+            in 30f..Float.POSITIVE_INFINITY -> setDescription(R.string.obese)
+            in 25..30 -> setDescription(R.string.overweight)
+            in 18.5f..25f -> setDescription(R.string.normalBmi)
+            in 16.5f..18.5f -> setDescription(R.string.underweight)
+            else -> setDescription(R.string.seriouslyUnderweight)
+        }
+    }
 
     private fun hideSoftKeyboard(activity: Activity) {
         val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -59,6 +67,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setInvalidInputPrompt() {
-        tvDescription.text = resources.getString(R.string.invalidInput)
+        setDescription(R.string.invalidInput)
+    }
+
+    private fun setDescription(stringId: Int) {
+        tvDescription.text = resources.getString(stringId)
     }
 }

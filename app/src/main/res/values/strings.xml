@@ -6,6 +6,11 @@
     <string name="countBmi">Count BMI</string>
     <string name="invalidInput">Invalid input!</string>
     <string name="invalidMass">Invalid mass!</string>
+    <string name="normalBmi">Normal BMI</string>
+    <string name="obese">Obese</string>
+    <string name="overweight">Overweight</string>
+    <string name="underweight">Underweight</string>
+    <string name="seriouslyUnderweight">Seriously Underweight</string>
     <string-array name="units">
         <item>kg/m</item>
         <item>lb/in</item>
