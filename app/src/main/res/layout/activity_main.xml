@@ -73,7 +73,7 @@
         android:textSize="@dimen/default_font_size" />
 
     <TextView
-        android:id="@+id/tvBMI"
+        android:id="@+id/tvBmi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/btnCount"
@@ -86,7 +86,7 @@
         android:id="@+id/tvBmiResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBMI"
+        android:layout_below="@+id/tvBmi"
         android:layout_marginTop="@dimen/default_top_margin"
         android:gravity="center"
         android:textSize="@dimen/default_font_size"
@@ -101,7 +101,6 @@
         android:layout_marginTop="@dimen/default_top_margin"
         android:gravity="center"
         android:textSize="@dimen/default_font_size"
-        android:textStyle="bold"
         tools:text="Twoje BMI jest za niskie" />
 
 </RelativeLayout>
