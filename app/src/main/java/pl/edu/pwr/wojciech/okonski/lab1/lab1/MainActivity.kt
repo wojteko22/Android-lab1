@@ -8,10 +8,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
-
+import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
-    private val bmiCounter = CountBmiForKgM()
+    private var bmiCounter: ICountBmi by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tryToCalculateBMI(mass: Float, height: Float) {
+        setBmiCounter()
         try {
             val bmi = bmiCounter.calculateBMI(mass, height).toString()
             tvBmiResult.text = bmi
@@ -53,6 +54,14 @@ class MainActivity : AppCompatActivity() {
         } catch(e: IllegalArgumentException) {
             setInvalidInputPrompt()
         }
+    }
+
+    private fun setBmiCounter() {
+        bmiCounter =
+                if (spinner.selectedItemPosition == 0)
+                    CountBmiForKgM()
+                else
+                    CountBmiForLbIn()
     }
 
     private fun setFireWorks(bmi: Float) {
