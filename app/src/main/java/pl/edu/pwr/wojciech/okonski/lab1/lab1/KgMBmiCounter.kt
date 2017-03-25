@@ -1,6 +1,6 @@
 package pl.edu.pwr.wojciech.okonski.lab1.lab1
 
-class CountBmiForKgM : ICountBmi {
+class KgMBmiCounter : BmiCounter {
     private val minimalMass = 10f
     private val maximalMass = 250f
     private val minimalHeight = 0.5f

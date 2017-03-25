@@ -11,7 +11,7 @@ import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
 import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
-    private var bmiCounter: ICountBmi by Delegates.notNull()
+    private var bmiCounter: BmiCounter by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
     private fun setBmiCounter() {
         bmiCounter =
                 if (spinner.selectedItemPosition == 0)
-                    CountBmiForKgM()
+                    KgMBmiCounter()
                 else
-                    CountBmiForLbIn()
+                    LbInBmiCounter()
     }
 
     private fun setFireWorks(bmi: Float) {

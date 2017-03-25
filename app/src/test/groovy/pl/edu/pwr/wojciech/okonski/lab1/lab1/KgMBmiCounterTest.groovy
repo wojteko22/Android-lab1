@@ -5,8 +5,8 @@ import spock.lang.Unroll
 
 import static spock.util.matcher.HamcrestMatchers.closeTo
 
-class CountBmiForKgMTest extends Specification {
-    def countBmi = new CountBmiForKgM();
+class KgMBmiCounterTest extends Specification {
+    def countBmi = new KgMBmiCounter();
 
     @Unroll
     def "verify mass #mass"() {
