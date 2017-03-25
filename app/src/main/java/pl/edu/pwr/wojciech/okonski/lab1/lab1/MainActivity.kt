@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSpinner()
-        setMassChecker()
         setOnClickListener()
     }
 
@@ -26,36 +25,40 @@ class MainActivity : AppCompatActivity() {
         spinner.adapter = adapter
     }
 
-    private fun setMassChecker() {
-        etMass.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                val mass = etMass.text.toString().toFloat()
-                if (!bmiCounter.isMassValid(mass))
-                    tvDescription.text = resources.getString(R.string.wrongMass)
-            }
-        }
-    }
-
     private fun setOnClickListener() {
         btnCount.setOnClickListener {
             hideSoftKeyboard(this)
-            val mass = etMass.text.toString().toFloat()
-            val height = etHeight.text.toString().toFloat()
-            tryToCalculateBMI(mass, height)
+            val massString = etMass.text.toString()
+            val heightString = etHeight.text.toString()
+            tryToCalculateBMI(massString, heightString)
         }
+    }
+
+    private fun tryToCalculateBMI(massString: String, heightString: String) {
+        if (massString == "" || heightString == "")
+            setInvalidInputPrompt()
+        else
+            tryToCalculateBMI(massString.toFloat(), heightString.toFloat())
     }
 
     private fun tryToCalculateBMI(mass: Float, height: Float) {
         try {
             val bmi = bmiCounter.calculateBMI(mass, height).toString()
             tvBmiResult.text = bmi
+            setFireWorks(bmi.toFloat())
         } catch(e: IllegalArgumentException) {
-            tvDescription.text = resources.getString(R.string.wrongInput)
+            setInvalidInputPrompt()
         }
     }
+
+    private fun setFireWorks(bmi: Float) {}
 
     private fun hideSoftKeyboard(activity: Activity) {
         val inputMethodManager = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+    }
+
+    private fun setInvalidInputPrompt() {
+        tvDescription.text = resources.getString(R.string.invalidInput)
     }
 }
