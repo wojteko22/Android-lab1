@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
 import kotlin.properties.Delegates
@@ -39,10 +40,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tryToCalculateBMI(massString: String, heightString: String) {
-        if (massString == "" || heightString == "")
+        if (isAnyEmpty(massString, heightString))
             handleInvalidInput()
         else
             tryToCalculateBMI(massString.toFloat(), heightString.toFloat())
+    }
+
+    private fun isAnyEmpty(vararg string: String) = string.any { it == "" }
+
+    private fun handleInvalidInput() {
+        cleanTextIn(tvBmiResult)
+        setDescription(R.string.invalidInput)
+    }
+
+    private fun cleanTextIn(textView: TextView) {
+        textView.text = ""
+    }
+
+    private fun setDescription(stringId: Int) {
+        tvDescription.text = resources.getString(stringId)
     }
 
     private fun tryToCalculateBMI(mass: Float, height: Float) {
@@ -56,11 +72,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setBmiCounter() {
         bmiCounter =
-                if (spinner.selectedItemPosition == 0)
+                if (isKgMSelected())
                     KgMBmiCounter()
                 else
                     LbInBmiCounter()
     }
+
+    private fun isKgMSelected() = spinner.selectedItemPosition == 0
 
     private fun calculateBmi(mass: Float, height: Float) {
         val bmi = bmiCounter.calculateBMI(mass, height).toString()
@@ -91,15 +109,6 @@ class MainActivity : AppCompatActivity() {
                 setColor(Color.RED)
             }
         }
-    }
-
-    private fun handleInvalidInput() {
-        tvBmiResult.text = ""
-        setDescription(R.string.invalidInput)
-    }
-
-    private fun setDescription(stringId: Int) {
-        tvDescription.text = resources.getString(stringId)
     }
 
     private fun setColor(color: Int) {
