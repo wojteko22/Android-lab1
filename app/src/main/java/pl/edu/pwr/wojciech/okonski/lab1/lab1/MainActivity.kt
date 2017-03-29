@@ -113,4 +113,9 @@ class MainActivity : AppCompatActivity() {
     private fun cleanTextIn(textView: TextView) {
         textView.text = ""
     }
+
+    public override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        displayBmiStuff()
+    }
 }
