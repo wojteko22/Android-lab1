@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,98 +9,103 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pl.edu.pwr.wojciech.okonski.lab1.lab1.MainActivity">
 
-    <Spinner
-        android:id="@+id/spinner"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/support_simple_spinner_dropdown_item" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvMass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spinner"
-        android:layout_marginTop="@dimen/default_top_margin"
-        android:text="@string/mass"
-        android:textSize="@dimen/default_font_size" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/support_simple_spinner_dropdown_item" />
 
-    <EditText
-        android:id="@+id/etMass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/tvMass"
-        android:layout_marginLeft="@dimen/default_left_margin"
-        android:layout_marginStart="@dimen/default_left_margin"
-        android:layout_toEndOf="@+id/tvMass"
-        android:layout_toRightOf="@id/tvMass"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        android:maxLength="7"
-        android:textSize="@dimen/default_font_size"
-        tools:text="67.5" />
+        <TextView
+            android:id="@+id/tvMass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner"
+            android:layout_marginTop="@dimen/default_top_margin"
+            android:text="@string/mass"
+            android:textSize="@dimen/default_font_size" />
 
-    <TextView
-        android:id="@+id/tvHeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvMass"
-        android:layout_marginTop="@dimen/default_top_margin"
-        android:text="@string/height"
-        android:textSize="@dimen/default_font_size" />
+        <EditText
+            android:id="@+id/etMass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tvMass"
+            android:layout_marginLeft="@dimen/default_left_margin"
+            android:layout_marginStart="@dimen/default_left_margin"
+            android:layout_toEndOf="@+id/tvMass"
+            android:layout_toRightOf="@id/tvMass"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="7"
+            android:textSize="@dimen/default_font_size"
+            tools:text="67.5" />
 
-    <EditText
-        android:id="@+id/etHeight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/tvHeight"
-        android:layout_alignLeft="@id/etMass"
-        android:layout_alignStart="@id/etMass"
-        android:layout_toEndOf="@+id/tvHeight"
-        android:layout_toRightOf="@id/tvHeight"
-        android:gravity="center"
-        android:inputType="numberDecimal"
-        android:maxLength="7"
-        android:textSize="@dimen/default_font_size"
-        tools:text="1.85" />
+        <TextView
+            android:id="@+id/tvHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMass"
+            android:layout_marginTop="@dimen/default_top_margin"
+            android:text="@string/height"
+            android:textSize="@dimen/default_font_size" />
 
-    <Button
-        android:id="@+id/btnCount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvHeight"
-        android:layout_marginTop="@dimen/default_top_margin"
-        android:text="@string/countBmi"
-        android:textSize="@dimen/default_font_size" />
+        <EditText
+            android:id="@+id/etHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tvHeight"
+            android:layout_alignLeft="@id/etMass"
+            android:layout_alignStart="@id/etMass"
+            android:layout_toEndOf="@+id/tvHeight"
+            android:layout_toRightOf="@id/tvHeight"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="7"
+            android:textSize="@dimen/default_font_size"
+            tools:text="1.85" />
 
-    <TextView
-        android:id="@+id/tvBmi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnCount"
-        android:layout_marginTop="@dimen/default_top_margin"
-        android:gravity="center"
-        android:text="@string/bmi"
-        android:textSize="@dimen/default_font_size" />
+        <Button
+            android:id="@+id/btnCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvHeight"
+            android:layout_marginTop="@dimen/default_top_margin"
+            android:text="@string/countBmi"
+            android:textSize="@dimen/default_font_size" />
 
-    <TextView
-        android:id="@+id/tvBmiResult"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBmi"
-        android:layout_marginTop="@dimen/default_top_margin"
-        android:gravity="center"
-        android:textSize="@dimen/default_font_size"
-        android:textStyle="bold"
-        tools:text="20.0" />
+        <TextView
+            android:id="@+id/tvBmi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnCount"
+            android:layout_marginTop="@dimen/default_top_margin"
+            android:gravity="center"
+            android:text="@string/bmi"
+            android:textSize="@dimen/default_font_size" />
 
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBmiResult"
-        android:layout_marginTop="@dimen/default_top_margin"
-        android:gravity="center"
-        android:textSize="@dimen/default_font_size"
-        tools:text="Normal BMI" />
+        <TextView
+            android:id="@+id/tvBmiResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvBmi"
+            android:layout_marginTop="@dimen/default_top_margin"
+            android:gravity="center"
+            android:textSize="@dimen/default_font_size"
+            android:textStyle="bold"
+            tools:text="20.0" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvBmiResult"
+            android:layout_marginTop="@dimen/default_top_margin"
+            android:gravity="center"
+            android:textSize="@dimen/default_font_size"
+            tools:text="Normal BMI" />
+
+    </RelativeLayout>
+</ScrollView>
