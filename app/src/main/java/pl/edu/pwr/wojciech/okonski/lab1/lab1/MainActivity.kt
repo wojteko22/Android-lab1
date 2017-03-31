@@ -114,8 +114,19 @@ class MainActivity : AppCompatActivity() {
         textView.text = ""
     }
 
-    public override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        displayBmiStuff()
+        val textColor = savedInstanceState.getInt(COLOR_KEY)
+        tvBmiResult.setTextColor(textColor)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val textColor = tvBmiResult.textColors.defaultColor
+        outState.putInt(COLOR_KEY, textColor)
+    }
+
+    companion object {
+        val COLOR_KEY = "COLOR"
     }
 }
