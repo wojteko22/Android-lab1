@@ -4,10 +4,12 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
 import kotlin.properties.Delegates
 
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
         setSpinner()
         btnCount.setOnClickListener { displayBmiStuff() }
     }
@@ -128,5 +131,10 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val COLOR_KEY = "COLOR"
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
     }
 }
