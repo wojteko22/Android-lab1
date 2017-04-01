@@ -17,4 +17,6 @@
         <item>lb/in</item>
     </string-array>
     <string name="title_activity_author">Author</string>
+    <string name="tvAuthorDescription">My name is Wojciech Okoński and I\u00A0developed this app. Running is my hobby</string>
+    <string name="runner">runner</string>
 </resources>
