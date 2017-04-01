@@ -143,11 +143,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.author -> {
-                val intent = Intent(this, AuthorActivity::class.java)
-                startActivity(intent)
+                startAuthorActivity()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun startAuthorActivity() {
+        val intent = Intent(this, AuthorActivity::class.java)
+        startActivity(intent)
     }
 }

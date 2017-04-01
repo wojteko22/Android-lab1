@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab1</string>
+    <string name="app_name">BMI calculator</string>
     <string name="mass">MASS</string>
     <string name="height">HEIGHT</string>
     <string name="bmi">BMI:</string>
@@ -16,5 +16,5 @@
         <item>kg/m</item>
         <item>lb/in</item>
     </string-array>
-    <string name="title_activity_author">AuthorActivity</string>
+    <string name="title_activity_author">Author</string>
 </resources>
