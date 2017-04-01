@@ -18,6 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AuthorActivity"
+            android:label="@string/title_activity_author"
+            android:parentActivityName="pl.edu.pwr.wojciech.okonski.lab1.lab1.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

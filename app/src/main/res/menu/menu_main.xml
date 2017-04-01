@@ -3,12 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="pl.edu.pwr.wojciech.okonski.lab1.myapplication.MainActivity">
     <item
-        android:id="@+id/action_favorite"
-        android:title="pies"
-        app:showAsAction="ifRoom"/>
-
-    <!-- Settings, should always be in the overflow -->
-    <item android:id="@+id/action_settings"
-        android:title="kot"
-        app:showAsAction="never"/>
+        android:id="@+id/author"
+        android:title="@string/author"
+        app:showAsAction="never" />
 </menu>

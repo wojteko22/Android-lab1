@@ -11,8 +11,10 @@
     <string name="overweight">Overweight</string>
     <string name="underweight">Underweight</string>
     <string name="seriouslyUnderweight">Seriously Underweight</string>
+    <string name="author">Author</string>
     <string-array name="units">
         <item>kg/m</item>
         <item>lb/in</item>
     </string-array>
+    <string name="title_activity_author">AuthorActivity</string>
 </resources>
