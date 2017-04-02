@@ -20,4 +20,5 @@
     <string name="Share">Share</string>
     <string name="tvAuthorDescription">My name is Wojciech Okoński and I\u00A0developed this app. Running is my hobby</string>
     <string name="runner">runner</string>
+    <string name="sharingMessage">My BMI is %s. I counted it using app created by Wojtek</string>
 </resources>

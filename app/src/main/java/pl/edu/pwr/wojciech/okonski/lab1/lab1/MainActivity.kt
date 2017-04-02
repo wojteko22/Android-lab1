@@ -152,10 +152,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun prepareSharingIntent() {
         val sendIntent = Intent(Intent.ACTION_SEND)
-        val sharingMessage = "My BMI is ${tvBmiResult.text}. I counted it using app created by Wojtek"
-        sendIntent.putExtra(Intent.EXTRA_TEXT, sharingMessage)
+        sendIntent.putExtra(Intent.EXTRA_TEXT, getSharingMessage())
         sendIntent.type = "text/plain"
         shareActionProvide.setShareIntent(sendIntent)
+    }
+
+    private fun getSharingMessage(): String {
+        val sharingMessageTemplate = resources.getString(R.string.sharingMessage)
+        return String.format(sharingMessageTemplate, tvBmiResult.text)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
