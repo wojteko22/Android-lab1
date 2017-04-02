@@ -69,10 +69,20 @@
             tools:text="1.85" />
 
         <Button
-            android:id="@+id/btnCount"
+            android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvHeight"
+            android:layout_marginTop="@dimen/default_top_margin"
+            android:text="@string/saveData"
+            android:textSize="@dimen/default_font_size"
+            android:enabled="false"/>
+
+        <Button
+            android:id="@+id/btnCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnSave"
             android:layout_marginTop="@dimen/default_top_margin"
             android:text="@string/countBmi"
             android:textSize="@dimen/default_font_size" />

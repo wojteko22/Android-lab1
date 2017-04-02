@@ -7,9 +7,14 @@ import android.os.Bundle
 import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.ShareActionProvider
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,9 +22,42 @@ import kotlinx.android.synthetic.main.content_main.*
 import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
 import kotlin.properties.Delegates
 
+
 class MainActivity : AppCompatActivity() {
-    private var bmiCounter: BmiCounter by Delegates.notNull()
+    private var bmiCounter: BmiCounter = KgMBmiCounter()
     private var shareActionProvide: ShareActionProvider by Delegates.notNull()
+    private val onItemSelectedListener = object : OnItemSelectedListener {
+        override fun onNothingSelected(parentView: AdapterView<*>) {}
+        override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View?, position: Int, id: Long) {
+            setBmiCounter(position)
+            checkInputData()
+        }
+    }
+    private val textWatcher = object : TextWatcher {
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun afterTextChanged(s: Editable?) {
+            checkInputData()
+        }
+    }
+
+    private fun setBmiCounter(selectedItemPosition: Int) {
+        bmiCounter =
+                if (selectedItemPosition == 0)
+                    KgMBmiCounter()
+                else
+                    LbInBmiCounter()
+    }
+
+    private fun checkInputData() {
+        btnSave.isEnabled =
+                try {
+                    bmiCounter.isMassValid(etMass.text.toString().toFloat())
+                            && bmiCounter.isHeightValid(etHeight.text.toString().toFloat())
+                } catch (e: NumberFormatException) {
+                    false
+                }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,13 +65,17 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setSpinner()
         btnCount.setOnClickListener { displayBmiStuff() }
+        etMass.addTextChangedListener(textWatcher)
+        etHeight.addTextChangedListener(textWatcher)
     }
 
     private fun setSpinner() {
         val adapter = ArrayAdapter.createFromResource(this, units, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+        spinner.onItemSelectedListener = onItemSelectedListener
     }
+
 
     private fun displayBmiStuff() {
         hideSoftKeyboard(this)
@@ -57,23 +99,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tryToCalculateBMI(mass: Float, height: Float) {
-        setBmiCounter()
         try {
             calculateBmi(mass, height)
         } catch(e: IllegalArgumentException) {
             handleInvalidInput()
         }
     }
-
-    private fun setBmiCounter() {
-        bmiCounter =
-                if (isKgMSelected())
-                    KgMBmiCounter()
-                else
-                    LbInBmiCounter()
-    }
-
-    private fun isKgMSelected() = spinner.selectedItemPosition == 0
 
     private fun calculateBmi(mass: Float, height: Float) {
         val bmi = bmiCounter.calculateBMI(mass, height).toString()
