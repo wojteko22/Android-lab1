@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.support.v4.view.MenuItemCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.ShareActionProvider
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
@@ -17,6 +19,7 @@ import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
     private var bmiCounter: BmiCounter by Delegates.notNull()
+    private var shareActionProvide: ShareActionProvider by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,7 +140,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        findShareActionProvider(menu)
+        prepareSharingIntent()
         return true
+    }
+
+    private fun findShareActionProvider(menu: Menu) {
+        val shareItem = menu.findItem(R.id.share)
+        shareActionProvide = MenuItemCompat.getActionProvider(shareItem) as ShareActionProvider
+    }
+
+    private fun prepareSharingIntent() {
+        val sendIntent = Intent(Intent.ACTION_SEND)
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+        sendIntent.type = "text/plain"
+        shareActionProvide.setShareIntent(sendIntent)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
