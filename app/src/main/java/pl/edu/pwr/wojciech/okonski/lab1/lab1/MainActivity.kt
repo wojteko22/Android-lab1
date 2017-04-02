@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         val massString = etMass.text.toString()
         val heightString = etHeight.text.toString()
         tryToCalculateBMI(massString, heightString)
+        invalidateOptionsMenu()
     }
 
     private fun hideSoftKeyboard(activity: Activity) {
@@ -170,5 +171,14 @@ class MainActivity : AppCompatActivity() {
     private fun startAuthorActivity() {
         val intent = Intent(this, AuthorActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        showShareItemIfBmiIsCounted(menu)
+        return true
+    }
+
+    private fun showShareItemIfBmiIsCounted(menu: Menu) {
+        menu.findItem(R.id.share).isVisible = tvBmiResult.text.isNotEmpty()
     }
 }
