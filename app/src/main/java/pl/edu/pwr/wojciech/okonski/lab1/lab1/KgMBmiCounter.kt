@@ -17,6 +17,7 @@ class KgMBmiCounter : BmiCounter {
     override fun calculateBMI(mass: Float, height: Float): Float {
         if (!isMassValid(mass) || !isHeightValid(height))
             throw IllegalArgumentException()
-        return mass / (height * height)
+        val bmi = mass / (height * height)
+        return Math.round(bmi * 100f) / 100f
     }
 }

@@ -142,7 +142,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         findShareActionProvider(menu)
-        prepareSharingIntent()
         return true
     }
 
@@ -153,7 +152,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun prepareSharingIntent() {
         val sendIntent = Intent(Intent.ACTION_SEND)
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
+        val sharingMessage = "My BMI is ${tvBmiResult.text}. I counted it using app created by Wojtek"
+        sendIntent.putExtra(Intent.EXTRA_TEXT, sharingMessage)
         sendIntent.type = "text/plain"
         shareActionProvide.setShareIntent(sendIntent)
     }
@@ -175,6 +175,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         showShareItemIfBmiIsCounted(menu)
+        prepareSharingIntent()
         return true
     }
 
