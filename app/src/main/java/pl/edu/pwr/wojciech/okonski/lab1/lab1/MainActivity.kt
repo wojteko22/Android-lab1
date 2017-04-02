@@ -1,6 +1,7 @@
 package pl.edu.pwr.wojciech.okonski.lab1.lab1
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -21,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
 import kotlin.properties.Delegates
-
 
 class MainActivity : AppCompatActivity() {
     private var bmiCounter: BmiCounter = KgMBmiCounter()
@@ -52,21 +52,27 @@ class MainActivity : AppCompatActivity() {
     private fun checkInputData() {
         btnSave.isEnabled =
                 try {
-                    bmiCounter.isMassValid(etMass.text.toString().toFloat())
-                            && bmiCounter.isHeightValid(etHeight.text.toString().toFloat())
+                    with(bmiCounter) { isMassValid(getMass()) && isHeightValid(getHeight()) }
                 } catch (e: NumberFormatException) {
                     false
                 }
     }
+
+    private fun getMass() = getMassString().toFloat()
+    private fun getMassString() = etMass.text.toString()
+    private fun getHeight() = getHeightString().toFloat()
+    private fun getHeightString() = etHeight.text.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         setSpinner()
+        readSavedData()
         btnCount.setOnClickListener { displayBmiStuff() }
         etMass.addTextChangedListener(textWatcher)
         etHeight.addTextChangedListener(textWatcher)
+        btnSave.setOnClickListener { saveInputData() }
     }
 
     private fun setSpinner() {
@@ -76,12 +82,16 @@ class MainActivity : AppCompatActivity() {
         spinner.onItemSelectedListener = onItemSelectedListener
     }
 
+    private fun readSavedData() {
+        val inputData = getPreferences(Context.MODE_PRIVATE)
+        etMass.setText(inputData.getString(MASS, ""))
+        etHeight.setText(inputData.getString(HEIGHT, ""))
+        spinner.setSelection(inputData.getInt(SPINNER_POSITION, 0))
+    }
 
     private fun displayBmiStuff() {
         hideSoftKeyboard(this)
-        val massString = etMass.text.toString()
-        val heightString = etHeight.text.toString()
-        tryToCalculateBMI(massString, heightString)
+        tryToCalculateBMI()
         invalidateOptionsMenu()
     }
 
@@ -90,19 +100,16 @@ class MainActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
     }
 
-    private fun tryToCalculateBMI(massString: String, heightString: String) {
+    private fun tryToCalculateBMI() {
         try {
-            tryToCalculateBMI(massString.toFloat(), heightString.toFloat())
-        } catch (e: NumberFormatException) {
-            handleInvalidInput()
-        }
-    }
-
-    private fun tryToCalculateBMI(mass: Float, height: Float) {
-        try {
-            calculateBmi(mass, height)
-        } catch(e: IllegalArgumentException) {
-            handleInvalidInput()
+            calculateBmi(getMass(), getHeight())
+        } catch (e: Exception) {
+            when (e) {
+                is NumberFormatException, is IllegalArgumentException -> {
+                    handleInvalidInput()
+                }
+                else -> throw e
+            }
         }
     }
 
@@ -156,18 +163,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        val textColor = savedInstanceState.getInt(COLOR_KEY)
+        val textColor = savedInstanceState.getInt(COLOR)
         tvBmiResult.setTextColor(textColor)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         val textColor = tvBmiResult.textColors.defaultColor
-        outState.putInt(COLOR_KEY, textColor)
-    }
-
-    companion object {
-        val COLOR_KEY = "COLOR"
+        outState.putInt(COLOR, textColor)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -179,6 +182,16 @@ class MainActivity : AppCompatActivity() {
     private fun findShareActionProvider(menu: Menu) {
         val shareItem = menu.findItem(R.id.share)
         shareActionProvide = MenuItemCompat.getActionProvider(shareItem) as ShareActionProvider
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        showShareItemIfBmiIsCounted(menu)
+        prepareSharingIntent()
+        return true
+    }
+
+    private fun showShareItemIfBmiIsCounted(menu: Menu) {
+        menu.findItem(R.id.share).isVisible = tvBmiResult.text.isNotEmpty()
     }
 
     private fun prepareSharingIntent() {
@@ -208,13 +221,19 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        showShareItemIfBmiIsCounted(menu)
-        prepareSharingIntent()
-        return true
+    private fun saveInputData() {
+        val inputData = getPreferences(Context.MODE_PRIVATE)
+        val editor = inputData.edit()
+        editor.putString(MASS, getMassString())
+        editor.putString(HEIGHT, getHeightString())
+        editor.putInt(SPINNER_POSITION, spinner.selectedItemPosition)
+        editor.apply()
     }
 
-    private fun showShareItemIfBmiIsCounted(menu: Menu) {
-        menu.findItem(R.id.share).isVisible = tvBmiResult.text.isNotEmpty()
+    companion object {
+        private val COLOR = "COLOR"
+        private val MASS = "MASS"
+        private val HEIGHT = "HEIGHT"
+        private val SPINNER_POSITION = "SPINNER_POSITION"
     }
 }

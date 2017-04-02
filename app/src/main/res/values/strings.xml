@@ -3,6 +3,7 @@
     <string name="mass">MASS</string>
     <string name="height">HEIGHT</string>
     <string name="bmi">BMI:</string>
+    <string name="saveData">Save data</string>
     <string name="countBmi">Count BMI</string>
     <string name="invalidInput">Invalid input!</string>
     <string name="invalidMass">Invalid mass!</string>
@@ -11,15 +12,14 @@
     <string name="overweight">Overweight</string>
     <string name="underweight">Underweight</string>
     <string name="seriouslyUnderweight">Seriously Underweight</string>
-    <string name="author">Author</string>
     <string-array name="units">
         <item>kg/m</item>
         <item>lb/in</item>
     </string-array>
     <string name="title_activity_author">Author</string>
-    <string name="Share">Share</string>
     <string name="tvAuthorDescription">My name is Wojciech Okoński and I\u00A0developed this app. Running is my hobby</string>
     <string name="runner">runner</string>
+    <string name="Share">Share</string>
+    <string name="author">Author</string>
     <string name="sharingMessage">My BMI is %s. I counted it using app created by Wojtek</string>
-    <string name="saveData">save data</string>
 </resources>
