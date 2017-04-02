@@ -17,11 +17,11 @@ class LbInBmiCounterTest extends Specification {
         isValid == expectedResult
 
         where:
-        mass     || expectedResult
-        22.05f   || false
-        22.051f  || true
-        551.159f || true
-        551.16f  || false
+        mass   || expectedResult
+        21.9f  || false
+        22f    || true
+        550f   || true
+        550.1f || false
     }
 
     @Unroll
@@ -33,11 +33,11 @@ class LbInBmiCounterTest extends Specification {
         isValid == expectedResult
 
         where:
-        height  || expectedResult
-        19.69f  || false
-        19.691f || true
-        98.429f || true
-        98.43f  || false
+        height || expectedResult
+        19.9f  || false
+        20f    || true
+        100f   || true
+        100.1f || false
     }
 
     @Unroll
@@ -49,11 +49,11 @@ class LbInBmiCounterTest extends Specification {
         thrown(IllegalArgumentException)
 
         where:
-        mass    | height
-        22.05f  | 70f
-        551.16f | 70f
-        150f    | 19.69f
-        150f    | 98.43f
+        mass   | height
+        21.9f  | 70f
+        550.1f | 70f
+        150f   | 19.9f
+        150f   | 100.1f
     }
 
     def "count BMI"() {
