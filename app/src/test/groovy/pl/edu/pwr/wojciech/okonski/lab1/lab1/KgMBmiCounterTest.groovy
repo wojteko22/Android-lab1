@@ -18,10 +18,10 @@ class KgMBmiCounterTest extends Specification {
 
         where:
         mass   || expectedResult
-        10f    || false
-        10.1f  || true
-        249.9f || true
-        250f   || false
+        9.9f   || false
+        10f    || true
+        250f   || true
+        250.1f || false
     }
 
     @Unroll
@@ -34,10 +34,10 @@ class KgMBmiCounterTest extends Specification {
 
         where:
         height || expectedResult
-        0.5f   || false
-        0.51f  || true
-        2.49f  || true
-        2.5f   || false
+        0.49f  || false
+        0.5f   || true
+        2.5f   || true
+        2.51f  || false
     }
 
     @Unroll
@@ -49,11 +49,11 @@ class KgMBmiCounterTest extends Specification {
         thrown(IllegalArgumentException)
 
         where:
-        mass | height
-        10f  | 1.5f
-        250f | 1.5f
-        80f  | 0.5f
-        80f  | 2.5f
+        mass   | height
+        9.9f   | 1.5f
+        250.1f | 1.5f
+        80f    | 0.49f
+        80f    | 2.51f
     }
 
     def "count BMI"() {

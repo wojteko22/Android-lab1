@@ -5,7 +5,7 @@ interface BmiCounter {
     val maximalMass: Float
     val minimalHeight: Float
     val maximalHeight: Float
-    fun isMassValid(mass: Float): Boolean
-    fun isHeightValid(height: Float): Boolean
+    fun isMassValid(mass: Float) = mass in minimalMass..maximalMass
+    fun isHeightValid(height: Float) = height in minimalHeight..maximalHeight
     fun calculateBMI(mass: Float, height: Float): Float
 }

@@ -6,14 +6,6 @@ class KgMBmiCounter : BmiCounter {
     override val minimalHeight = 0.5f
     override val maximalHeight = 2.5f
 
-    override fun isMassValid(mass: Float): Boolean {
-        return mass > minimalMass && mass < maximalMass
-    }
-
-    override fun isHeightValid(height: Float): Boolean {
-        return height > minimalHeight && height < maximalHeight
-    }
-
     override fun calculateBMI(mass: Float, height: Float): Float {
         if (!isMassValid(mass) || !isHeightValid(height))
             throw IllegalArgumentException()
