@@ -18,6 +18,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         btnCount.setOnClickListener { displayBmiStuff() }
         etMass.addTextChangedListener(textWatcher)
         etHeight.addTextChangedListener(textWatcher)
-        btnSave.setOnClickListener { saveInputData() }
+        btnSave.setOnClickListener { handleSavingInputData() }
     }
 
     private fun setSpinner() {
@@ -145,7 +146,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDescription(stringId: Int) {
-        tvDescription.text = resources.getString(stringId)
+        tvDescription.text = getString(stringId)
     }
 
     private fun setColor(color: Int) {
@@ -202,7 +203,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getSharingMessage(): String {
-        val sharingMessageTemplate = resources.getString(R.string.sharingMessage)
+        val sharingMessageTemplate = getString(R.string.sharingMessage)
         return String.format(sharingMessageTemplate, tvBmiResult.text)
     }
 
@@ -221,6 +222,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun handleSavingInputData() {
+        saveInputData()
+        btnSave.isEnabled = false
+        showToast()
+    }
+
     private fun saveInputData() {
         val inputData = getPreferences(Context.MODE_PRIVATE)
         val editor = inputData.edit()
@@ -228,6 +235,11 @@ class MainActivity : AppCompatActivity() {
         editor.putString(HEIGHT, getHeightString())
         editor.putInt(SPINNER_POSITION, spinner.selectedItemPosition)
         editor.apply()
+    }
+
+    private fun showToast() {
+        val text = getString(R.string.saved)
+        Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

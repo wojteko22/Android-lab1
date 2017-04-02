@@ -22,4 +22,5 @@
     <string name="Share">Share</string>
     <string name="author">Author</string>
     <string name="sharingMessage">My BMI is %s. I counted it using app created by Wojtek</string>
+    <string name="saved">Saved</string>
 </resources>
