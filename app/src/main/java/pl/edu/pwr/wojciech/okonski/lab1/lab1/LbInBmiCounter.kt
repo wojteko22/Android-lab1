@@ -1,10 +1,10 @@
 package pl.edu.pwr.wojciech.okonski.lab1.lab1
 
 class LbInBmiCounter : BmiCounter {
-    private val minimalMass = 22.05f
-    private val maximalMass = 551.16f
-    private val minimalHeight = 19.69f
-    private val maximalHeight = 98.43f
+    override val minimalMass = 22.05f
+    override val maximalMass = 551.16f
+    override val minimalHeight = 19.69f
+    override val maximalHeight = 98.43f
 
     override fun isMassValid(mass: Float): Boolean {
         return mass > minimalMass && mass < maximalMass

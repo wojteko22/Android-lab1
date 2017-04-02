@@ -51,12 +51,45 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkInputData() {
-        btnSave.isEnabled =
-                try {
-                    with(bmiCounter) { isMassValid(getMass()) && isHeightValid(getHeight()) }
-                } catch (e: NumberFormatException) {
-                    false
-                }
+        val isMassValid = checkMassInput()
+        val isHeightValid = checkHeightInput()
+        btnSave.isEnabled = isMassValid && isHeightValid
+    }
+
+    private fun checkMassInput(): Boolean {
+        return try {
+            checkMass()
+        } catch (e: NumberFormatException) {
+            etMass.error = getString(R.string.NaN)
+            false
+        }
+    }
+
+    private fun checkMass(): Boolean {
+        val isValid = bmiCounter.isMassValid(getMass())
+        if (!isValid) {
+            val template = getString(R.string.inputRange)
+            etMass.error = String.format(template, bmiCounter.minimalMass, bmiCounter.maximalMass)
+        }
+        return isValid
+    }
+
+    private fun checkHeightInput(): Boolean {
+        return try {
+            checkHeight()
+        } catch (e: NumberFormatException) {
+            etHeight.error = getString(R.string.NaN)
+            false
+        }
+    }
+
+    private fun checkHeight(): Boolean {
+        val isValid = bmiCounter.isHeightValid(getHeight())
+        if (!isValid) {
+            val template = getString(R.string.inputRange)
+            etHeight.error = String.format(template, bmiCounter.minimalHeight, bmiCounter.maximalHeight)
+        }
+        return isValid
     }
 
     private fun getMass() = getMassString().toFloat()

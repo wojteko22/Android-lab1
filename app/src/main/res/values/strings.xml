@@ -19,8 +19,10 @@
     <string name="title_activity_author">Author</string>
     <string name="tvAuthorDescription">My name is Wojciech Okoński and I\u00A0developed this app. Running is my hobby</string>
     <string name="runner">runner</string>
-    <string name="Share">Share</string>
+    <string name="share">Share</string>
     <string name="author">Author</string>
     <string name="sharingMessage">My BMI is %s. I counted it using app created by Wojtek</string>
     <string name="saved">Saved</string>
+    <string name="NaN">not a number</string>
+    <string name="inputRange">from %1$.1f to %2$.1f</string>
 </resources>
