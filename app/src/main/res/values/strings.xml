@@ -5,8 +5,6 @@
     <string name="bmi">BMI:</string>
     <string name="saveData">Save data</string>
     <string name="countBmi">Count BMI</string>
-    <string name="invalidInput">Invalid input!</string>
-    <string name="invalidMass">Invalid mass!</string>
     <string name="normalBmi">Normal BMI</string>
     <string name="obese">Obese</string>
     <string name="overweight">Overweight</string>

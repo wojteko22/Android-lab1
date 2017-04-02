@@ -74,9 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tvHeight"
             android:layout_marginTop="@dimen/default_top_margin"
+            android:enabled="false"
             android:text="@string/saveData"
-            android:textSize="@dimen/default_font_size"
-            android:enabled="false"/>
+            android:textSize="@dimen/default_font_size" />
 
         <Button
             android:id="@+id/btnCount"
@@ -84,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btnSave"
             android:layout_marginTop="@dimen/default_top_margin"
+            android:enabled="false"
             android:text="@string/countBmi"
             android:textSize="@dimen/default_font_size" />
 

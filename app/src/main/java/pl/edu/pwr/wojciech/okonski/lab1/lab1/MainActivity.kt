@@ -17,7 +17,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -53,7 +52,9 @@ class MainActivity : AppCompatActivity() {
     private fun checkInputData() {
         val isMassValid = checkMassInput()
         val isHeightValid = checkHeightInput()
-        btnSave.isEnabled = isMassValid && isHeightValid
+        val isInputValid = isMassValid && isHeightValid
+        btnSave.isEnabled = isInputValid
+        btnCount.isEnabled = isInputValid
     }
 
     private fun checkMassInput(): Boolean {
@@ -125,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayBmiStuff() {
         hideSoftKeyboard(this)
-        tryToCalculateBMI()
+        calculateBmi()
         invalidateOptionsMenu()
     }
 
@@ -134,21 +135,8 @@ class MainActivity : AppCompatActivity() {
         inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
     }
 
-    private fun tryToCalculateBMI() {
-        try {
-            calculateBmi(getMass(), getHeight())
-        } catch (e: Exception) {
-            when (e) {
-                is NumberFormatException, is IllegalArgumentException -> {
-                    handleInvalidInput()
-                }
-                else -> throw e
-            }
-        }
-    }
-
-    private fun calculateBmi(mass: Float, height: Float) {
-        val bmi = bmiCounter.calculateBMI(mass, height).toString()
+    private fun calculateBmi() {
+        val bmi = bmiCounter.calculateBMI(getMass(), getHeight()).toString()
         tvBmiResult.text = bmi
         setFireWorks(bmi.toFloat())
     }
@@ -184,15 +172,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setColor(color: Int) {
         tvBmiResult.setTextColor(color)
-    }
-
-    private fun handleInvalidInput() {
-        cleanTextIn(tvBmiResult)
-        setDescription(R.string.invalidInput)
-    }
-
-    private fun cleanTextIn(textView: TextView) {
-        textView.text = ""
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
