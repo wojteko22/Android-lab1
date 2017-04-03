@@ -4,7 +4,7 @@
     tools:context="pl.edu.pwr.wojciech.okonski.lab1.myapplication.MainActivity">
     <item
         android:id="@+id/author"
-        android:title="@string/author"
+        android:title="@string/title_activity_author"
         app:showAsAction="never" />
     <item
         android:id="@+id/share"

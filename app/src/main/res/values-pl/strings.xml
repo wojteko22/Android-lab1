@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BMI kalkulator</string>
+    <string name="NaN">to nie liczba</string>
+    <string name="countBmi">Oblicz BMI</string>
+    <string name="height">WZROST</string>
+    <string name="inputRange">od %1$.1f do %2$.1f</string>
+    <string name="mass">MASA</string>
+    <string name="normalBmi">Prawidłowe BMI</string>
+    <string name="obese">Otyłość</string>
+    <string name="overweight">Nadwaga</string>
+    <string name="runner">biegacz</string>
+    <string name="saveData">Zapisz dane</string>
+    <string name="saved">Zapisano</string>
+    <string name="seriouslyUnderweight">Wychudzenie</string>
+    <string name="share">Udostępnij</string>
+    <string name="sharingMessage">Moje BMI wynosi %s. Policzyłem je, korzystając z aplikacji Wojtka</string>
+    <string name="title_activity_author">Autor</string>
+    <string name="tvAuthorDescription">Nazywam się Wojciech Okoński, jestem autorem tej aplikacji. Moim hobby jest bieganie</string>
+    <string name="underweight">Niedowaga</string>
+</resources>
