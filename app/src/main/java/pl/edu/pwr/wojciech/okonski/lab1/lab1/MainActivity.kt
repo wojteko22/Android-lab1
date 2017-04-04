@@ -3,6 +3,7 @@ package pl.edu.pwr.wojciech.okonski.lab1.lab1
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.MenuItemCompat
@@ -104,10 +105,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         setSpinner()
         readSavedData()
-        btnCount.setOnClickListener { displayBmiStuff() }
-        etMass.addTextChangedListener(textWatcher)
-        etHeight.addTextChangedListener(textWatcher)
-        btnSave.setOnClickListener { handleSavingInputData() }
+        setListeners()
     }
 
     private fun setSpinner() {
@@ -122,6 +120,13 @@ class MainActivity : AppCompatActivity() {
         etMass.setText(inputData.getString(MASS, ""))
         etHeight.setText(inputData.getString(HEIGHT, ""))
         spinner.setSelection(inputData.getInt(SPINNER_POSITION, 0))
+    }
+
+    private fun setListeners() {
+        btnCount.setOnClickListener { displayBmiStuff() }
+        etMass.addTextChangedListener(textWatcher)
+        etHeight.addTextChangedListener(textWatcher)
+        btnSave.setOnClickListener { handleSavingInputData() }
     }
 
     private fun displayBmiStuff() {
@@ -243,10 +248,14 @@ class MainActivity : AppCompatActivity() {
     private fun saveInputData() {
         val inputData = getPreferences(Context.MODE_PRIVATE)
         val editor = inputData.edit()
+        putData(editor)
+        editor.apply()
+    }
+
+    private fun putData(editor: SharedPreferences.Editor) {
         editor.putString(MASS, getMassString())
         editor.putString(HEIGHT, getHeightString())
         editor.putInt(SPINNER_POSITION, spinner.selectedItemPosition)
-        editor.apply()
     }
 
     private fun showToast() {
