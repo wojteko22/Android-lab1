@@ -18,9 +18,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 import pl.edu.pwr.wojciech.okonski.lab1.lab1.R.array.units
 import kotlin.properties.Delegates
 
@@ -227,22 +228,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.author -> {
-                startAuthorActivity()
+                startActivity<AuthorActivity>()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun startAuthorActivity() {
-        val intent = Intent(this, AuthorActivity::class.java)
-        startActivity(intent)
-    }
-
     private fun handleSavingInputData() {
         saveInputData()
         btnSave.isEnabled = false
-        showToast()
+        toast(getString(R.string.saved))
     }
 
     private fun saveInputData() {
@@ -256,11 +252,6 @@ class MainActivity : AppCompatActivity() {
         editor.putString(MASS, getMassString())
         editor.putString(HEIGHT, getHeightString())
         editor.putInt(SPINNER_POSITION, spinner.selectedItemPosition)
-    }
-
-    private fun showToast() {
-        val text = getString(R.string.saved)
-        Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
     }
 
     companion object {
