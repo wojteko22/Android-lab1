@@ -7,8 +7,7 @@ class KgMBmiCounter : BmiCounter {
     override val maximalHeight = 2.5f
 
     override fun calculateBMI(mass: Float, height: Float): Float {
-        if (!isMassValid(mass) || !isHeightValid(height))
-            throw IllegalArgumentException()
+        super.calculateBMI(mass, height)
         val bmi = mass / (height * height)
         return Math.round(bmi * 100f) / 100f
     }
