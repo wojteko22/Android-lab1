@@ -6,7 +6,7 @@ import spock.lang.Unroll
 import static spock.util.matcher.HamcrestMatchers.closeTo
 
 class KgMBmiCounterTest extends Specification {
-    def countBmi = new KgMBmiCounter();
+    def countBmi = new KgMBmiCounter()
 
     @Unroll
     def "verify mass #mass"() {
@@ -43,7 +43,7 @@ class KgMBmiCounterTest extends Specification {
     @Unroll
     def "throw exception for mass #mass and height #height"() {
         when:
-        countBmi.calculateBMI(mass, height);
+        countBmi.calculateBMI(mass, height)
 
         then:
         thrown(IllegalArgumentException)
