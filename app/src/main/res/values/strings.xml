@@ -2,7 +2,7 @@
     <string name="app_name">BMI calculator</string>
     <string name="mass">MASS</string>
     <string name="height">HEIGHT</string>
-    <string name="bmi">BMI:</string>
+    <string name="bmi" translatable="false">BMI:</string>
     <string name="saveData">Save data</string>
     <string name="countBmi" translatable="false">Count BMI</string>
     <string name="normalBmi">Normal BMI</string>
