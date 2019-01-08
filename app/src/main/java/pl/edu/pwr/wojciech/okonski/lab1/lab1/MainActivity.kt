@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
                 setDescription(R.string.obese)
                 setColor(Color.RED)
             }
-            in 25..30 -> {
+            in 25f..30f -> {
                 setDescription(R.string.overweight)
                 setColor(Color.MAGENTA)
             }
@@ -255,9 +255,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private val COLOR = "COLOR"
-        private val MASS = "MASS"
-        private val HEIGHT = "HEIGHT"
-        private val SPINNER_POSITION = "SPINNER_POSITION"
+        private const val COLOR = "COLOR"
+        private const val MASS = "MASS"
+        private const val HEIGHT = "HEIGHT"
+        private const val SPINNER_POSITION = "SPINNER_POSITION"
     }
 }
